@@ -1,5 +1,5 @@
 # Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  22/23)
-Autor/a: Carlos Galea Magro   uvus:cargalmag
+Autor/a: Carlos Galea Magro   uvus:MTD8580
 
 El objetivo de este proyecto es analizar los datos de los productos vendidos en las tiendas de Walmart en Estados Unidos, los cuales se encuentran en el dataset de Kaggle que se puede descargar con el siguiente enlace (https://www.kaggle.com/datasets/promptcloud/walmart-product-dataset-usa). El dataset original cuenta con 14 columnas. Así que, se ha recortado el número de columnas escogiendo 7 de las 14 columnas, también se han añadido algunas columnas como las columnas "Precio Final", "Precio Venta" y "Total Ventas", entre las columnas escogidas encontramos al menos una de cada tipo, es decir, de tipo String (cadena), tipo Integer(número entero), tipo Double (número real), tipo LocalDateTime (fecha), tipo Boolean y de tipo Enumerado.
 
@@ -10,7 +10,7 @@ El objetivo de este proyecto es analizar los datos de los productos vendidos en 
   * **fp.productos**: Paquete que contiene los tipos del proyecto.
   * **fp.productos.test**: Paquete que contiene las clases de test del proyecto.
   * **fp.common**: Paquete que contiene los tipos auxiliares del proyecto
-  * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
+  * **fp.utiles**:  Paquete que contiene las clases utiles.
 * **/data**: Contiene el dataset del proyecto
     * **walmart_com-ecommerce_product_details.csv**: Archivo csv que muestra información sobre algunos productos vendidos en tiendas de Walmart.
     
@@ -29,7 +29,7 @@ El dataset está compuesto por 11 columnas, con la siguiente descripción:
 * **Categioria**: de tipo cadena, representa las distintas categorías a las que pertenece un producto.
 * **Disponible**: de tipo booleano, representa si el producto está disponible o no actualmente. El producto está disponible si aparece como TRUE, si aparece como FALSE no está disponible
 * **Total Ventas**: de tipo entero, representa el número total de veces que se ha vendido un producto.
-
+* **Precios**: de tipo record, representa un precio inicial y final de un producto.
 
 ## Tipos implementados
 
@@ -50,29 +50,29 @@ Representa un producto concreto.
 - _categoria_, de tipo List<String>, consultable y modificable.
 - _disponible_, de tipo Boolean, consultable y modificable.
 - _totalVentas_, de tipo Integer, consultable y modificable.
+- _precios_, de tipo Record, consultable y modificable.
 
 **Constructores**: 
 
-- C1: Crea un objeto de tipo Producto a partir de los siguientes parámetros: String id, String nombreProducto. El resto de parámetros tienen el valor _null_.
-- C2: Crea un objeto de tipo Producto a partir de los siguientes parámetros: String id, LocalDateTime fechaInicio, String nombreProducto, Double precioInicial, Double precioFinal, PrecioVenta precioVenta, Integer codigo, List<String> categoria, Boolean disponible, Integer totalVentas.
+- C1: Crea un objeto de tipo Producto a partir de los siguientes parámetros: String id, LocalDateTime fechaInicio. El resto de parámetros tienen el valor null.
+- C2: Crea un objeto de tipo Producto a partir de los siguientes parámetros: String id, LocalDateTime fechaInicio, String nombreProducto, Double precioInicial, Double precioFinal, PrecioVenta precioVenta, Integer codigo, List<String> categoria, Boolean disponible, Integer totalVentas, Record precios.
 
 
 **Restricciones**:
  
 - R1: El ID de cada producto no puede estar vacío.
-- R2: Si un producto no se ha vendido ninguna vez no puede estar agotado, por lo que debe de estar disponible, es decir, si el valor de _totalSales_ es 0, _available_ no podrá ser FALSE.
+- R2: El precio inicial de un producto no puede ser 0.
 
+**Criterio de igualdad**: Dos productos son iguales si tienen el mismo nombre, disponibilidad y tienen el mismo precio final.
 
-**Criterio de igualdad**: Dos productos son iguales si tienen el mismo ID y nombre, son de la misma marca y tienen el mismo precio inicial.
-
-**Criterio de ordenación**: Los productos están ordenados primero por su precio inicial y después por el número total de ventas.
+**Criterio de ordenación**: Los productos están ordenados primero por su disponibilidad, nombre y precio final.
 
 **Otras operaciones**:
  
--	_Double getGananciasTotales()_: Devuelve cuanto dinero se ha ganado con cada producto, para calcularlo multiplica el precio de venta del producto y el número total de ventas.
+-	_Double getDiferenciaPrecio()_: Devuelve la diferencia de dinero entre el precio final e inicial del producto.
 
 #### Tipos auxiliares
-- _PrecioVenta_, enumerado. Puede tomar 3 valores distintos: Rebajado, PrecioInicial, AumentaPrecio.
+- _PrecioVenta_, enumerado. Puede tomar 3 valores distintos: REBAJADO, AUMENTAPRECIO, PRECIOINICIAL.
 
 ### Factoría
 Descripción breve de la factoría.
