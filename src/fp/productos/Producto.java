@@ -48,7 +48,6 @@ public class Producto implements Comparable<Producto> {
 		return precioInicial;
 	}
 	public void setPrecioInicial(Double precioInicial) {
-		Checkers.check("Error en precio", precioVenta==precioVenta.REBAJADO && precioFinal<precioInicial);
 		this.precioInicial = precioInicial;
 	}
 	public Double getPrecioFinal() {
@@ -67,6 +66,7 @@ public class Producto implements Comparable<Producto> {
 		return codigo;
 	}
 	public void setCodigo(Integer codigo) {
+		checkCodigoPositivo(codigo);
 		this.codigo = codigo;
 	}
 	
@@ -90,7 +90,6 @@ public class Producto implements Comparable<Producto> {
 		this.totalVentas = totalVentas;
 	}
 	
-
 	public Precios getPrecios() {
 		return precios;
 	}
@@ -103,8 +102,8 @@ public class Producto implements Comparable<Producto> {
 		Checkers.check("Cadena de id vacía", !(id == ""));
 	}
 	
-	private void checkPrecioInicial(Double precioInicial) {
-		Checkers.check("El precio inicial no puede ser 0", precioInicial > 0);
+	private void checkCodigoPositivo(Integer codigo) {
+		Checkers.check("El codigo no puede ser negativo", codigo > 0);
 	}
 	
 	
@@ -127,15 +126,13 @@ public class Producto implements Comparable<Producto> {
 	
 	//Constructor 2 (todas las propiedades)
 	
-	public Producto(String id, LocalDateTime fechaInicio, String nombre, Double precioInicial, Double precioFinal,
-			TipoVenta precioVenta, Integer codigo, List<String>categoria , Boolean disponible, Integer totalVentas, Precios precios) {
+	public Producto(String id, LocalDateTime fechaInicio, String nombre, Precios precios, TipoVenta precioVenta, Integer codigo,
+			List<String>categoria , Boolean disponible, Integer totalVentas) {
 		checkId(id);
-		checkPrecioInicial(precioInicial);
+		checkCodigoPositivo(codigo);
 		this.id = id;
 		this.fechaInicio = fechaInicio;
 		this.nombre = nombre;
-		this.precioInicial = precioInicial;
-		this.precioFinal = precioFinal;
 		this.precioVenta = precioVenta;
 		this.codigo = codigo;
 		this.categoria = categoria;
@@ -209,6 +206,7 @@ public class Producto implements Comparable<Producto> {
 		System.out.println("Disponibilidad " + this.getDisponible());
 		System.out.println("Ventas totales " +  this.getTotalVentas());
 		System.out.println("Precios " +  this.getPrecios());
+		System.out.println("Diferencia de precios: " +  this.getDiferenciaPrecio());
 		System.out.println("==========================");
 		
 	}

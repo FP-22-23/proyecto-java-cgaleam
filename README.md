@@ -75,38 +75,37 @@ Representa un producto concreto.
 - _PrecioVenta_, enumerado. Puede tomar 3 valores distintos: REBAJADO, AUMENTAPRECIO, PRECIOINICIAL.
 
 ### Factoría
-Descripción breve de la factoría.
+Clase de factoría para construir objetos de tipo Producto.
 
-- _método 1_: Descripción del método 1.
--	_método 2_: Descripción del método 2.
+leerProductos: Método que recibe como parámetro una cadena que contiene el nombre y ruta del fichero CSV, y devuelve una lista de objetos del tipo.
+•parsearBooleano: Método que parsea un booleano para convertirla en tipo requerido.
+•parseaLista: Método que parsea la lista categoria para poder leerla sin problemas.
 
 ### Tipo Contenedor
 
-Descripción breve del tipo contenedor.
+Clase contenedora de los objetos de tipo Producto.
 
 **Propiedades**:
 
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
-- ...
+- Pais, de tipo String, consultable. Pais donde se encuentra.
 - 
 **Constructores**: 
 
-- C1: Descripción del constructor 1.
-- C2: Descripción del constructor 2.
-- ...
+- C1: Crea un objeto de tipo Productos a partir del parametro String pais. El parámetros productos es una lista vacía.
+- C2: Crea un objeto de tipo Productos a partir de los siguientes parámetros: String pais, List producto.
+-
+**Criterio de igualdad**: Dos productos son iguales si tienen el mismo pais y lista.
 
-**Restricciones**:
- 
-- R1: Descripción de la restricción 1.
-- R2: Descripción de la restricción 2.
-- ...
-- 
-**Criterio de igualdad**: Describir el criterio de igualdad
-
-**Criterio de ordenación**: Describir el criterio de ordenación (si lo hay).
+**Criterio de ordenación**: Describir el criterio de ordenación.
 
 **Otras operaciones**:
  
--	_método 1_: Descripción del método 1.
-- ...
+-	void getNumeroProductos(): Obtiene el número de productos que existen en el objeto Tienda. 
+•void anadirProducto(Producto p): Añade un producto al objeto Tienda.
+•void anadirListaProductos(List productos): Añade una lista de productos al objeto Tienda.
+•void eliminarProducto(Producto p): Elimina un producto del objeto Tienda.
+•Boolean existePrecioInicialSuperaCien(Double precioInicial): Existe producto cuyo precio inicial supere los 100?
+•Integer numProductosPorNombre(String nombre): Contador de productos pedidos por nombre
+•List productoMayorQuePorNombre (String nombre, Integer n):Producto con mas ventas totales que n por nombre 
+•Map<String, List> agrupaProductosPorPrecioVenta(): Agrupar categoria por precio venta
+•Map<Integer, Integer> contarProductosPorDisponibilidad(): Contar productos por disponibilidad
