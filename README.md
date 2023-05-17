@@ -103,6 +103,7 @@ Clase contenedora de los objetos de tipo Producto.
 
 **Otras operaciones**:
  
+ ----------ENTREGA 2-----------
 -	void getNumeroProductos(): Obtiene el número de productos que existen en el objeto ProductoImpl. 
 -	void anadirProducto(Producto p): Añade un producto al objeto ProductoImpl.
 -	void anadirListaProductos(List productos): Añade una lista de productos al objeto ProductoImpl.
