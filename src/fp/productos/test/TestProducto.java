@@ -11,6 +11,8 @@ import fp.productos.TipoVenta;
 public class TestProducto {
 
 	public static void main(String[] args) {
+		
+	// Prueba del constructor 1
 		Producto p1 = new Producto("459b05f3cb7f1cba0a36fdc042ff0056", LocalDateTime.of(2019, 3, 22, 17, 10, 0));
         System.out.println(p1);
 

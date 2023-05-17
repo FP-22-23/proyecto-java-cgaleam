@@ -93,19 +93,34 @@ Clase contenedora de los objetos de tipo Producto.
 
 - C1: Crea un objeto de tipo Productos a partir del parametro String pais. El parámetros productos es una lista vacía.
 - C2: Crea un objeto de tipo Productos a partir de los siguientes parámetros: String pais, List producto.
--
+- C Stream: Crea un objeto de tipo Productos a partir de los siguientes parámetros: Stream<Producto>.
+- C Collection: Crea un objeto de tipo Productos a partir de los siguientes parámetros: Collection<Producto>.
+- C3: Crea un objeto de tipo Productos a partir de los siguientes parámetros: String pais, Stream<Producto>.
+
 **Criterio de igualdad**: Dos productos son iguales si tienen el mismo pais y lista.
 
 **Criterio de ordenación**: Describir el criterio de ordenación.
 
 **Otras operaciones**:
  
--	void getNumeroProductos(): Obtiene el número de productos que existen en el objeto Tienda. 
-•void anadirProducto(Producto p): Añade un producto al objeto Tienda.
-•void anadirListaProductos(List productos): Añade una lista de productos al objeto Tienda.
-•void eliminarProducto(Producto p): Elimina un producto del objeto Tienda.
-•Boolean existePrecioInicialSuperaCien(Double precioInicial): Existe producto cuyo precio inicial supere los 100?
+-	void getNumeroProductos(): Obtiene el número de productos que existen en el objeto ProductoImpl. 
+•void anadirProducto(Producto p): Añade un producto al objeto ProductoImpl.
+•void anadirListaProductos(List productos): Añade una lista de productos al objeto ProductoImpl.
+•void eliminarProducto(Producto p): Elimina un producto del objeto ProductoImpl.
+•Boolean existeCodigoDado(Integer codigo): Existe producto cuyo codigo sea el dado? 
 •Integer numProductosPorNombre(String nombre): Contador de productos pedidos por nombre
 •List productoMayorQuePorNombre (String nombre, Integer n):Producto con mas ventas totales que n por nombre 
 •Map<String, List> agrupaProductosPorPrecioVenta(): Agrupar categoria por precio venta
 •Map<Integer, Integer> contarProductosPorDisponibilidad(): Contar productos por disponibilidad
+
+----------ENTREGA 3-----------
+•Boolean existeCodigoDadoStream(Integer codigo): Existe producto cuyo codigo sea el dado? con Stream
+•Integer numProductosPorNombreStream(String nombre): Contador de productos pedidos por nombre con Stream
+•List<Producto> productoMayorQuePorNombreStream(String nombre, Integer n): Seleccion de producto con mas ventas totales que n por nombre con Stream
+•Producto productoMayorVentasTotales(): Producto con mayor ventas totales con filtrado
+•List<Producto> productoDisponibleOrdenado(): Productos que estan disponibles ordenados por ventas totales
+•Map<TipoVenta, List<Producto>> agrupaProductosPorPrecioVentaStream(): Agrupar categoria por precio venta con Stream
+•Map<TipoVenta, Set<String>> getNombrePorPrecioVenta(): Obtiene en cada precio venta el nombre del producto
+•Map<Integer, Producto> getProductoMasVendidoPorAño(): Obtiene un Map cuyas claves son años y valores productos con mas ventas ese año
+•Map<TipoVenta, List<String>> getMejoresProductosPorPrecioVenta(Integer n):Obtiene un SortedMap con claves el precio venta y valores los n mejores productos(segun sus ventas totales)
+•String getProductoMasCaro():Devuelve la clave que es el nombre del producto con el mayor precio inicial del Map 

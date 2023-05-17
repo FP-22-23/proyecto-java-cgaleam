@@ -150,9 +150,8 @@ public class Producto implements Comparable<Producto> {
 	//Representacion como cadena
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", fechaInicio=" + fechaInicio + ", nombre=" + nombre + ", precioInicial="
-				+ precioInicial + ", precioFinal=" + precioFinal + ", precioVenta=" + precioVenta + ", codigo=" + codigo
-				+ ", categoria=" + categoria + ", disponible=" + disponible + ", totalVentas=" + totalVentas + ", precios="+ precios + "]";
+		return "Producto [id=" + id + ", fechaInicio=" + fechaInicio + ", precios="+ precios + ", nombre=" + nombre + ", precioVenta=" + precioVenta + ", codigo=" + codigo
+				+ ", categoria=" + categoria + ", disponible=" + disponible + ", totalVentas=" + totalVentas + "]";
 	}
 	
 	

@@ -16,19 +16,34 @@ import fp.productos.Producto;
 
 public class FactoriaProductos {
 
-	public static List<Producto> leerProductos(String nombreFichero){
-        List<Producto> res = new ArrayList<Producto>();
-        try {
-            List<String> lineas = Files.readAllLines(Paths.get(nombreFichero));
-            lineas.remove(0);
-            for (String linea: lineas) {
-                res.add(parsearProducto(linea));
-            }
-        } catch (IOException e) {
-        	System.out.println("No se ha encontrado el fichero"+ nombreFichero);
-        }
-        return res;
-    }
+//	public static List<Producto> leerProductos(String nombreFichero){
+//        List<Producto> res = new ArrayList<Producto>();
+//        try {
+//            List<String> lineas = Files.readAllLines(Paths.get(nombreFichero));
+//            lineas.remove(0);
+//            for (String linea: lineas) {
+//                res.add(parsearProducto(linea));
+//            }
+//        } catch (IOException e) {
+//        	System.out.println("No se ha encontrado el fichero"+ nombreFichero);
+//        }
+//        return res;
+//    }
+	
+	public static Productos leerProductos(String nombreFichero) {
+		Productos res = null;
+		try {
+			Stream<Producto> p = 
+					Files.lines(Paths.get(nombreFichero)).
+					skip(1).
+					map(FactoriaProductos::parsearProducto);
+			res = new ProductoImpl(p);
+		} catch(IOException e) {
+			System.out.println("No se ha encontrado el fichero " + nombreFichero);
+		}
+		return res;
+	}
+	
 	
 	public static Producto parsearProducto(String linea) {
 		String[] trozos=linea.split(";");
@@ -46,13 +61,13 @@ public class FactoriaProductos {
 		Integer totalVentas=Integer.valueOf(trozos[9].trim());
 		
 		
-	return new Producto( id, fechaInicio, nombre, precios,  precioVenta, codigo, categoria , disponible, totalVentas);
+	return new Producto( id, fechaInicio, nombre, precios, precioVenta, codigo, categoria , disponible, totalVentas);
 	
 	}
 		private static Boolean parseaBooleano(String cadena) {
 			Boolean res = null;
 			cadena = cadena.toUpperCase();
-			if (cadena.equals("VERDADERO")) {
+			if (cadena.equals("TRUE")) {
 				res = true;
 			}else {
 				res = false;
@@ -63,7 +78,7 @@ public class FactoriaProductos {
 		
 		public static  List<String> parseaLista(String cadena){
 
-			String [] trozos=cadena.split("|");
+			String [] trozos=cadena.split(",");
 			List<String> lista=new ArrayList<>();
 			for(String t:trozos) {
 				lista.add(t.trim());
